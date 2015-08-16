@@ -1,0 +1,38 @@
+    <article class="diary">
+      <h2 class="diary--user well well-small"><%= diary.user.full_name %></h2>
+      <div class="marked diary--body"><%= diary.diary %></div>
+      <div class="comments">
+        <p class="text-right comments--nav">
+          <span>
+            <% if signed_in? && diary.own?(current_user) %>
+            <%= link_to "変更する", new_diary_path(date: diary.date) %>
+            <% end %>
+          </span>
+          <span class="comments--count">コメント<%= diary.comments.count %>件</span>&nbsp;
+          <span class="comments--register">
+            <% if signed_in? %>
+            <%= link_to "コメントする", "#", class: "comments--display" %>
+            <% end %>
+          </span>
+        </p>
+        <div class="comments--form">
+          <%= form_tag comments_path, class: "comments-create" do %>
+            <%= text_area_tag :comment, {}, { class: "comment-textarea" } %>
+            <%= hidden_field_tag :diary_id, diary.id %>
+            <%= submit_tag "登録する", class: "btn btn-small btn-primary" %>
+          <% end %>
+        </div>
+        <div class="row">
+          <div class="comments-list">
+            <% diary.comments.each do |comment| %>
+            <div class="span8">
+              <div class="comment">
+                <div class="comment-owner"><%= comment.user.full_name %>がコメントしました&nbsp;<span class="comment--created-at"><%= comment.created_at_jst.strftime('%Y年%m月%d日 %H:%M:%S') %></span></div>
+                <div class="marked"><%= comment.comment %></div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </article>

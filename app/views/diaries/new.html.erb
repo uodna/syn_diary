@@ -1,0 +1,12 @@
+<h1>登録する</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@diary) do |f| %>
+      
+      <%= render "diaries/form", f: f %>
+
+      <%= f.submit "登録する", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<input type="hidden" id="js-api-url" value="<%= diaries_api_json_path %>" />

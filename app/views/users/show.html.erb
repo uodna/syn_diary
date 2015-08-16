@@ -1,0 +1,9 @@
+<% title @user.full_name %>
+<h1><%= @user.full_name %></h1>
+
+<div class="row">
+  <div class="span8 offset2">
+  <h2 class="text-left"><%= @user.full_name %>が書いた日報</h2>
+  <%= render @diaries %>
+  </div>
+</div>

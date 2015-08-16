@@ -1,0 +1,4 @@
+    <h3><%= link_to '<', diaries_path(date: @searchDate.prev_month) %>&nbsp;<%= @searchDate.month %>月&nbsp;<%= link_to '>', diaries_path(date: @searchDate.next_month) %></h3>
+    <% @start_of_month.step(@end_of_month, 1) do |date| %>
+      <%= link_to date.strftime("%e"), diaries_path(date: date) %>
+    <% end %>

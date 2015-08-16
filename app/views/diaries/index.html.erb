@@ -1,0 +1,19 @@
+<% title @searchDate.to_s %>
+<div class="row">
+  <div class="span1 offset2"><%= link_to "前の日", diaries_path(date: @searchDate.prev_day) %></div>
+  <h1 class="span6"><%= @searchDate %></h1>
+  <div class="span1 text-right"><%= link_to "次の日", diaries_path(date: @searchDate.next_day) %></div>
+</div>
+<div class="row">
+  <div class="span8 offset2">
+    <%= render "diaries/calendar" %>
+  </div>
+</div>
+<div class="row">
+  <div class="span8 offset2">
+    <%= render @diaries %>
+  </div>
+  <div class="span8 offset2">
+    <%= render "diaries/calendar" %>
+  </div>
+</div>
