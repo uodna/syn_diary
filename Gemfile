@@ -45,3 +45,8 @@ gem 'jquery-ui-rails'
 gem 'meta-tags'
 gem "jquery-tmpl-rails"
 gem 'marked-rails'
+
+group :development do
+  gem 'quiet_assets'
+  gem 'bullet'
+end
