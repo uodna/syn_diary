@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @diaries = Diary.eager_load(:comments).where("diaries.user_id = ?", @user.id).merge(Comment.order("comments.created_at DESC"))
+    @diaries = Diary.includes(:comments, :user).where("diaries.user_id = ?", @user.id).merge(Comment.order("comments.created_at DESC"))
   end
 
   def new
