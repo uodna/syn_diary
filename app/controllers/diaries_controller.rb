@@ -4,7 +4,7 @@ class DiariesController < ApplicationController
   def index
     @searchDate = convertDate(params[:date]) ? convertDate(params[:date]) : Date.today
 
-    @diaries = Diary.includes(:comments, :user).opened.where("date = ?", @searchDate).merge(Comment.order("comments.created_at DESC"))
+    @diaries = Diary.includes({comments:[:user]}, :user).opened.where("date = ?", @searchDate).merge(Comment.order("comments.created_at DESC"))
 
     @start_of_month = Date.new(@searchDate.year, @searchDate.month, 1);
     @end_of_month = Date.new(@searchDate.year, @searchDate.month, -1);
