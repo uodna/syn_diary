@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
-    @diaries = Diary.includes({comments:[:user]}).includes(:user).where("diaries.user_id = ?", @user.id).merge(Comment.order("comments.created_at DESC"))
+    @user = User.includes(diaries:[{comments: :user}]).find(params[:id])
   end
 
   def new
